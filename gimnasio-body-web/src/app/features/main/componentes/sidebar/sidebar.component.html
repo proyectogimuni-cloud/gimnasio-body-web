@@ -1,0 +1,11 @@
+<nav class="sidebar">
+  <a
+    *ngFor="let item of sidebarMenuItems"
+    [routerLink]="['/main', item.ruta]"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <i *ngIf="item.icono">{{item.icono}}</i>
+    {{ item.texto }}
+  </a>
+</nav>
