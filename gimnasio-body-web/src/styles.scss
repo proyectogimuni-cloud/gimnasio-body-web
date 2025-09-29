@@ -1,4 +1,149 @@
-body, html {
-    padding: 0;
-    margin: 0;
+:root {
+  --primary: #273475;
+  --primaryLigth: #7288f9;
+  --primaryGray: #c3c3c3;
+  --primaryDark: #100b2b;
+  --primaryDark-rgb: 15 23 42;
+  --primaryWhite: #e3e3e3;
+  --baseText: 20px;
+  --basePadding: 20px 20px;
+  --smoothTimeDelayTransition: 400ms;
+  --font-sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --defaultShadow: 0px 4px 8px 0px rgb(var(--primaryDark-rgb) / 0.5): 
+}
+body,
+html,
+input {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font: 600 calc(var(--baseText) * 0.8) / 1.1 var(--font-sans);
+}
+
+// --- Mixings para inputs
+
+@mixin inputBaseMixing() {
+  padding: calc(var(--baseText) * 0.5);
+  border-radius: 6px;
+  font-size: var(--baseText);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
+    &:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 20%, transparent);
+    box-shadow: 0 0 0 3px #2563eb33;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  &:hover {
+    border-color: color-mix(
+      in srgb,
+      var(--primary) 40%,
+      var(--primaryDark) 50%
+    );
+  }
+}
+
+input {
+  @include inputBaseMixing();
+
+}
+
+input[type="number"] {
+  @include inputBaseMixing();
+}
+
+// No genera código, cuando se utilice el extend, lo aplica en dónde sea que se utilice
+%btn-reset {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  background: none;
+}
+
+/* MIXIN base + variantes utilizado como una fábrica para la creación de botones */
+@mixin btnMixing($bg, $fg, $bd, $padY: 0.5em, $padX: 1.1em, $radius: 0.5rem) {
+  @extend %btn-reset;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+
+  padding: $padY $padX;
+  border-radius: $radius;
+  border: 1px solid #{$bd};
+  background: #{$bg};
+  color: #{$fg};
+  cursor: pointer;
+  user-select: none;
+
+  transition: background-color var(--smoothTimeDelayTransition) ease,
+    border-color var(--smoothTimeDelayTransition) ease,
+    color var(--smoothTimeDelayTransition) ease,
+    box-shadow var(--smoothTimeDelayTransition) ease, transform 120ms ease;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, #{$bg} 88%, black 12%);
+    border-color: color-mix(in srgb, #{$bd} 85%, black 15%);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 22%, transparent);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+    background: color-mix(in srgb, #{$bg} 80%, black 20%);
+    border-color: color-mix(in srgb, #{$bd} 75%, black 25%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+  }
+}
+
+/* === Variantes botones=== */
+
+/* Primario: sólido */
+.btn {
+  &--primary {
+    @include btnMixing(var(--primary), #fff, var(--primary));
+  }
+
+  /* Secundario: borde + fondo casi transparente */
+  &--secondary {
+    @include btnMixing(
+      color-mix(in srgb, var(--primaryDark) 6%, transparent),
+      var(--primaryDark),
+      var(--primaryGray)
+    );
+
+    &:hover:not(:disabled) {
+      background: color-mix(in srgb, var(--primaryDark) 12%, transparent);
+      border-color: color-mix(
+        in srgb,
+        var(--primaryGray) 80%,
+        var(--primaryDark) 20%
+      );
+    }
+  }
+}
+
+
+///  Configuración global de Inputs -----
+.input-pareja {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--baseText)*0.2);
+
 }
