@@ -1,11 +1,23 @@
-<nav class="sidebar">
-  <a
-    *ngFor="let item of sidebarMenuItems"
-    [routerLink]="['/main', item.ruta]"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-  >
-    <i *ngIf="item.icono">{{item.icono}}</i>
-    {{ item.texto }}
-  </a>
+<nav id="sidebar">
+  <section>
+    <app-perfil-miniatura></app-perfil-miniatura>
+  </section>
+  <section>
+    <ul>
+      <li id="menu-items">
+        <a
+          class="menu-item"
+          *ngFor="let item of sidebarMenuItems"
+          [routerLink]="['/main', item.ruta]"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span class="material-symbols-outlined"> {{ item.icono }} </span>
+          <p>
+            {{ item.texto }}
+          </p>
+        </a>
+      </li>
+    </ul>
+  </section>
 </nav>

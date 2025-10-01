@@ -1,1 +1,15 @@
-<p>Regristro asistencia landing</p>
+<div id="registro-asistencia-container">
+  <form [formGroup]="registroForm" (ngSubmit)="marcar()">
+    <h2>Ingrese documento de identidad</h2>
+    <div class="accionables">
+      <input type="number" formControlName="documento" />
+      <button
+      class="btn--primary"
+        type="submit"
+        [disabled]="registroForm.invalid"
+      >
+        Marcar Ingreso
+      </button>
+    </div>
+  </form>
+</div>
