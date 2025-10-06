@@ -1,5 +1,6 @@
 :root {
   --primary: #273475;
+  --error: #b60000;
   --primaryLigth: #7288f9;
   --primaryGray: #c3c3c3;
   --primaryDark: #100b2b;
@@ -146,4 +147,11 @@ input[type="number"] {
   flex-direction: column;
   gap: calc(var(--baseText)*0.2);
 
+}
+
+
+// --- Errors
+
+.error-msg-txt{
+  color: var(--error);
 }

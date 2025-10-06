@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLandingComponent } from './pantallas/landing/main-landing.component';
 import { MainRoutes } from './enums/main-routes.enum';
+import { guardAuthChildGuard } from '../../core/guardianes/guard-auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: MainLandingComponent,
+    canActivateChild: [guardAuthChildGuard],
     children: [
       {
         path: MainRoutes.REGISTRO_ASISTENCIA,

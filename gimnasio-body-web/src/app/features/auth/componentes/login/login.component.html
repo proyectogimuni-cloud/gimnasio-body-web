@@ -1,22 +1,25 @@
+
+
 <div id="login-container">
-    <div id="login-card">
-        <h1>Gimnasio Body Fit</h1>
-        <img src="/assets/imagenes/logo_unipaz_bg.png" width="50px" alt="icono unipaz" srcset="">
-        <h3>Iniciar Sesión</h3>
+  <div id="login-card">
+    <h1>Gimnasio Body Fit</h1>
+    <img src="/assets/imagenes/logo_unipaz_bg.png" width="50" alt="icono unipaz" />
+    <h3>Iniciar Sesión</h3>
 
-        <form>
-            <div id="usuario" class="input-pareja">
-                <label for="usuario">Usuario</label>
-                <input type="text" placeholder="Ingrese nombre de usuario" id="usuario" type="text">
-            </div>
-            <div  class="input-pareja">
-                <label id="password" for="password">Contrasenia</label>
-                <input type="password" placeholder="Ingrese password" id="password" type="text">
-            </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="input-pareja">
+        <label for="usuario">Usuario</label>
+        <input  id="usuario" type="text" formControlName="username" placeholder="Ingrese nombre de usuario" />
+        <small class="error-msg-txt" *ngIf="form.controls.username.touched && form.controls.username.invalid">Usuario requerido</small>
+      </div>
 
-            <button type="submit" class="btn--primary">Ingresar</button>
+      <div class="input-pareja">
+        <label for="password">Contraseña</label>
+        <input  id="password" type="password" formControlName="password" placeholder="Ingrese password" />
+        <small class="error-msg-txt" *ngIf="form.controls.password.touched && form.controls.password.invalid">Contraseña requerida</small>
+      </div>
 
-        </form>
-
-    </div>
+      <button type="submit" class="btn--primary" [disabled]="loading">Ingresar</button>
+    </form>
+  </div>
 </div>
