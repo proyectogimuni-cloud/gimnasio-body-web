@@ -1,15 +1,37 @@
 <div id="registro-asistencia-container">
   <form [formGroup]="registroForm" (ngSubmit)="marcar()">
     <h2>Ingrese documento de identidad</h2>
+
     <div class="accionables">
-      <input type="number" formControlName="documento" />
-      <button
-      class="btn--primary"
-        type="submit"
-        [disabled]="registroForm.invalid"
-      >
-        Marcar Ingreso
+      <input type="number" formControlName="documento" placeholder="Documento" />
+
+      <div>
+        <input type="checkbox" id="marcarSalida" formControlName="marcarSalida" />
+        <label for="marcarSalida">Marcar Salida</label>
+      </div>
+
+      <button class="btn--primary" type="submit" [disabled]="registroForm.invalid || loading">
+        {{ isSalida ? 'Marcar Salida' : 'Marcar Ingreso' }}
       </button>
     </div>
   </form>
 </div>
+
+<!-- Modal: usuario no existe -->
+<p-dialog
+  header="Usuario no encontrado"
+  [(visible)]="showNoClienteDialog"
+  [modal]="true"
+  [closable]="true"
+  [dismissableMask]="true"
+>
+  <p>El usuario con documento <b>{{ ultimoDocumentoIntentado }}</b> no existe.</p>
+  <p>¿Desea registrarlo ahora?</p>
+
+  <ng-template pTemplate="footer">
+    <button type="button" (click)="showNoClienteDialog = false">Cancelar</button>
+    <button type="button" class="btn--primary" (click)="irACrudCliente()">
+      Ir a registro de clientes
+    </button>
+  </ng-template>
+</p-dialog>

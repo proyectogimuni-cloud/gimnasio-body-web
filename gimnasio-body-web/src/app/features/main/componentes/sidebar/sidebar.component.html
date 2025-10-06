@@ -10,7 +10,6 @@
           *ngFor="let item of sidebarMenuItems"
           [routerLink]="['/main', item.ruta]"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
         >
           <span class="material-symbols-outlined"> {{ item.icono }} </span>
           <p>

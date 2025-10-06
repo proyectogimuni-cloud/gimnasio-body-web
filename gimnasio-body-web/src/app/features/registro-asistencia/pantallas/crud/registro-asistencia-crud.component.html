@@ -1,0 +1,50 @@
+<div id="registro-asistencia-crud-container">
+  <h2>Registrar usuario</h2>
+
+  <form [formGroup]="form" (ngSubmit)="registrar()">
+    <h3>Ingrese documento de identidad</h3>
+
+    <div class="fila">
+      <input
+        type="number"
+        formControlName="identificacion"
+        placeholder="Documento"
+      />
+    </div>
+
+    <div class="genero-edad-carrera-container">
+      <div class="col">
+        <label>Género</label>
+        <!-- sin filtro -->
+        <p-dropdown
+          [options]="generos"
+          formControlName="genero"
+          [showClear]="false"
+        >
+        </p-dropdown>
+      </div>
+
+      <div class="col">
+        <label>Edad</label>
+        <input type="number" formControlName="edad" />
+      </div>
+
+      <div class="col">
+        <label>Carrera</label>
+        <p-dropdown
+          [options]="carreras"
+          formControlName="carrera"
+          [filter]="true"
+          filterBy="label"
+        >
+        </p-dropdown>
+      </div>
+    </div>
+
+    <div class="acciones">
+      <button class="btn--primary" type="submit" [disabled]="form.invalid">
+        Registrar Usuario
+      </button>
+    </div>
+  </form>
+</div>
