@@ -42,3 +42,18 @@ ul {
     font-size: var(--baseText);
   }
 }
+
+.seccion-inferior{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+:host::ng-deep {
+  p-button, .p-button{
+    width: 100% !important;
+    margin: 16px 16px;
+    
+  }
+
+}

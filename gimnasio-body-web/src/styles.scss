@@ -3,6 +3,7 @@
   --error: #b60000;
   --primaryLigth: #7288f9;
   --primaryGray: #c3c3c3;
+  --primaryGreen: #009738;
   --primaryDark: #100b2b;
   --primaryDark-rgb: 15 23 42;
   --primaryWhite: #e3e3e3;
@@ -155,4 +156,40 @@ input[type="number"] {
 
 .error-msg-txt{
   color: var(--error);
+}
+
+// Animaciones
+
+.gradiente-bg {
+  --grad-angle: 45deg;
+  --grad-speed: 18s;
+  --c1: var(--primaryDark);
+  --c2: var(--primaryGreen);
+  --c3: var(--primaryLigth, #7288f9); 
+
+  background-image: linear-gradient(var(--grad-angle), var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
+  background-size: 200% 200%;
+  animation: gradiente-move var(--grad-speed) ease-in-out infinite alternate;
+  will-change: background-position;
+}
+
+@keyframes gradiente-move {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Accesibilidad: sin animación si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .gradiente-bg { animation: none; }
+}
+
+// No data img container
+.no-data-img-container{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  img{
+    border-radius: 8px;
+  }
+border-radius: 8px;  
 }

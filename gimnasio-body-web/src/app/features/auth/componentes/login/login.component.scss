@@ -1,29 +1,62 @@
-#login-container{
-    background: var(--primaryWhite);
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+#login-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  #login-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: var(--basePadding);
+    box-shadow: 0px 4px 12px 6px rgb(var(--primaryDark-rgb) / 0.2);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    #login-card{
-        background-color: white;
-        border-radius: 8px;
-        padding: var(--basePadding);
-        box-shadow: 0px 4px 8px 0px rgb(var(--primaryDark-rgb) / 0.5);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
-        form{
-            width: 100%;
-           
-        }
 
-        .btn--primary{
-            width: 100%;
-            margin-top: calc(var(--baseText)*0.5);
-        }
+    // controles animación
+    --sh-blur-base: 12px;
+    --sh-spread-base: 6px;
+    --sh-blur-amp: 6px; 
+    --sh-spread-amp: 4px; 
+    --sh-speed: 3.2s;
+
+    animation: login-shadow-breathe var(--sh-speed) ease-in-out infinite;
+    will-change: box-shadow;
+
+    form {
+      width: 100%;
     }
+
+    .btn--primary {
+      width: 100%;
+      margin-top: calc(var(--baseText) * 0.5);
+    }
+  }
+}
+
+.input-pareja{
+    margin: var(--baseText) 0px;
+}
+
+@keyframes login-shadow-breathe{
+  0%{
+    box-shadow: 0px 4px var(--sh-blur-base) var(--sh-spread-base)
+                rgb(var(--primaryDark-rgb) / 0.20);
+  }
+  50%{
+    box-shadow: 0px 4px calc(var(--sh-blur-base) + var(--sh-blur-amp))
+                calc(var(--sh-spread-base) + var(--sh-spread-amp))
+                rgb(var(--primaryDark-rgb) / 0.30);
+  }
+  100%{
+    box-shadow: 0px 4px var(--sh-blur-base) var(--sh-spread-base)
+                rgb(var(--primaryDark-rgb) / 0.20);
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  #login-container #login-card{ animation: none; }
 }

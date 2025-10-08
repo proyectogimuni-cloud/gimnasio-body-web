@@ -48,25 +48,58 @@
     <div class="grafica" *ngIf="showGrafCarrera">
       <h3>Asistencia por carrera</h3>
       <ng-container *ngIf="!loadingCharts; else skelPie">
-        <p-chart type="pie" [data]="pieData" height="320"></p-chart>
+        <ng-container *ngIf="hasChartData(pieData); else noDataPie">
+          <p-chart type="pie" [data]="pieData" height="320"></p-chart>
+        </ng-container>
+        <ng-template #noDataPie>
+          <div class="no-data-img-container">
+            <img
+              width="300px"
+              src="/assets/imagenes/no_data.jpg"
+              alt="Sin datos"
+            />
+          </div>
+        </ng-template>
       </ng-container>
     </div>
 
     <div class="grafica" *ngIf="showGrafHora">
       <h3>Horarios con mayor afluencia</h3>
       <ng-container *ngIf="!loadingCharts; else skelPie">
-        <p-chart type="doughnut" [data]="donutData" height="720"></p-chart>
+        <ng-container *ngIf="hasChartData(donutData); else noDataDonut">
+          <p-chart type="doughnut" [data]="donutData" height="720"></p-chart>
+        </ng-container>
+        <ng-template #noDataDonut>
+          <div class="no-data-img-container">
+            <img
+              width="300px"
+              src="/assets/imagenes/no_data.jpg"
+              alt="Sin datos"
+            />
+          </div>
+        </ng-template>
       </ng-container>
     </div>
 
     <div class="grafica" *ngIf="showGrafHM6">
       <h3>Asistencia Hombres vs Mujeres (últimos 6 meses)</h3>
       <ng-container *ngIf="!loadingCharts; else skelPie">
-        <p-chart
-          type="bar"
-          [data]="barData"
-          [options]="{ aspectRatio: 3 }"
-        ></p-chart>
+        <ng-container *ngIf="hasChartData(barData); else noDataBar">
+          <p-chart
+            type="bar"
+            [data]="barData"
+            [options]="{ aspectRatio: 3 }"
+          ></p-chart>
+        </ng-container>
+        <ng-template #noDataBar>
+          <div class="no-data-img-container">
+            <img
+              width="300px"
+              src="/assets/imagenes/no_data.jpeg"
+              alt="Sin datos"
+            />
+          </div>
+        </ng-template>
       </ng-container>
     </div>
   </div>
