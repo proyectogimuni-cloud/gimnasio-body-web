@@ -1,0 +1,175 @@
+<div id="panel-control-container">
+  <h1 class="titulo">Panel de control</h1>
+  <div id="filtro-fecha">
+    <span class="fecha"
+      >Fecha filtrado:
+      <b>
+        {{ filtrosForm.value.desde | date : "dd/MM/yyyy HH:mm" }} —
+        {{ filtrosForm.value.hasta | date : "dd/MM/yyyy HH:mm" }}
+      </b>
+    </span>
+  </div>
+  <div class="toolbar">
+    <div class="acciones">
+      <button
+        pButton
+        type="button"
+        class="graphs-btn"
+        (click)="showGraphsToggle = true"
+      >
+        <span class="badge">{{ graphsCount }}</span>
+        <span class="txt">Gráficas mostradas</span>
+      </button>
+
+      <button
+        pButton
+        type="button"
+        label=""
+        class="p-button-secondary graphs-btn"
+        (click)="descargarCsv()"
+      >
+        <span class="material-symbols-outlined"> download </span>
+        <span class="txt">Descargar .CSV</span>
+      </button>
+
+      <button
+        pButton
+        type="button"
+        class="p-button-help graphs-btn"
+        (click)="showFilters = true"
+      >
+        <span class="badge">{{ filtrosCount }}</span>
+        <span class="txt">Filtros</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="graficas">
+    <div class="grafica" *ngIf="showGrafCarrera">
+      <h3>Asistencia por carrera</h3>
+      <ng-container *ngIf="!loadingCharts; else skelPie">
+        <p-chart type="pie" [data]="pieData" height="320"></p-chart>
+      </ng-container>
+    </div>
+
+    <div class="grafica" *ngIf="showGrafHora">
+      <h3>Horarios con mayor afluencia</h3>
+      <ng-container *ngIf="!loadingCharts; else skelPie">
+        <p-chart type="doughnut" [data]="donutData" height="720"></p-chart>
+      </ng-container>
+    </div>
+
+    <div class="grafica" *ngIf="showGrafHM6">
+      <h3>Asistencia Hombres vs Mujeres (últimos 6 meses)</h3>
+      <ng-container *ngIf="!loadingCharts; else skelPie">
+        <p-chart
+          type="bar"
+          [data]="barData"
+          [options]="{ aspectRatio: 3 }"
+        ></p-chart>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<ng-template #skelPie>
+  <p-skeleton width="100%" height="320px"></p-skeleton>
+</ng-template>
+<!-- Overlays -->
+
+<p-dialog
+  header="Gráficas mostradas"
+  [(visible)]="showGraphsToggle"
+  [modal]="true"
+  [closable]="true"
+>
+  <div id="graficas-mostradas-container">
+    <p-checkbox
+      [(ngModel)]="showGrafCarrera"
+      inputId="g1"
+      binary="true"
+      label="Por carrera"
+      class="por-carrera"
+    ></p-checkbox>
+    <br />
+    <p-checkbox
+      [(ngModel)]="showGrafHora"
+      inputId="g2"
+      binary="true"
+      label="Por hora"
+    ></p-checkbox>
+    <br />
+    <p-checkbox
+      [(ngModel)]="showGrafHM6"
+      inputId="g3"
+      binary="true"
+      label="H vs M últimos 6 meses"
+    ></p-checkbox>
+  </div>
+</p-dialog>
+
+<p-dialog
+  header="Filtros"
+  [(visible)]="showFilters"
+  [modal]="true"
+  [style]="{ width: '520px' }"
+>
+  <form [formGroup]="filtrosForm" class="filtros">
+    <div class="filter-row filtro-desde">
+      <label>Desde</label>
+      <input type="datetime-local" formControlName="desde" />
+    </div>
+    <div class="filter-row">
+      <label>Hasta</label>
+      <input type="datetime-local" formControlName="hasta" />
+    </div>
+    <div class="filter-row">
+      <label>Género</label>
+      <p-multiSelect
+        appendTo="body"
+        formControlName="genero"
+        [options]="generosOpts"
+        optionLabel="label"
+        optionValue="value"
+      ></p-multiSelect>
+    </div>
+    <div class="filter-row">
+      <label>Carrera</label>
+      <p-multiSelect
+        appendTo="body"
+        formControlName="carrera"
+        [options]="carrerasOpts"
+        optionLabel="label"
+        optionValue="value"
+        [filter]="true"
+      ></p-multiSelect>
+    </div>
+    <div class="filter-row">
+      <label>Estado</label>
+      <p-dropdown
+        formControlName="estado"
+        [options]="[
+          { label: 'Ambos', value: 'ambos' },
+          { label: 'Abierto', value: 'abierto' },
+          { label: 'Cerrado', value: 'cerrado' }
+        ]"
+      ></p-dropdown>
+    </div>
+
+    <div class="acciones">
+      <button
+        pButton
+        type="button"
+        class="p-button-secondary"
+        label="Limpiar"
+        (click)="limpiarFiltros()"
+      ></button>
+      <span class="spacer"></span>
+      <button
+        pButton
+        type="button"
+        label="Aplicar"
+        (click)="aplicarFiltros()"
+      ></button>
+    </div>
+  </form>
+</p-dialog>
