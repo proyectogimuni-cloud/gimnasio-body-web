@@ -2,20 +2,19 @@
   <h2>Registrar usuario</h2>
 
   <form [formGroup]="form" (ngSubmit)="registrar()">
-    <h3>Ingrese documento de identidad</h3>
+    <div id="documento-identidad">
+      <h3>Ingrese documento de identidad</h3>
 
-    <div class="fila">
       <input
         type="number"
         formControlName="identificacion"
-        placeholder="Documento"
+        placeholder="e.g 1096547894"
       />
     </div>
 
     <div class="genero-edad-carrera-container">
-      <div class="col">
+      <div class="campo-registro">
         <label>Género</label>
-        <!-- sin filtro -->
         <p-dropdown
           [options]="generos"
           formControlName="genero"
@@ -24,12 +23,12 @@
         </p-dropdown>
       </div>
 
-      <div class="col">
+      <div class="campo-registro">
         <label>Edad</label>
-        <input type="number" formControlName="edad" />
+        <input type="number" formControlName="edad" placeholder="e.g 22" />
       </div>
 
-      <div class="col">
+      <div class="campo-registro">
         <label>Carrera</label>
         <p-dropdown
           [options]="carreras"

@@ -12,6 +12,19 @@
   }
 }
 
+#documento-identidad{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 16px;
+  input{
+    width: 100%;
+    text-align: center;
+  }
+}
+
 
 /// Eliminar Spin buttons de los input numbers
 
@@ -30,4 +43,30 @@ input[type="number"]{
 .genero-edad-carrera-container{
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
+    gap: 16px;
+    .campo-registro{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 8px;
+    }
+}
+
+:host::ng-deep {
+  p-multiselect,
+  .p-multiselect {
+    width: 100% !important;
+  }
+
+  p-dropdown,
+  .p-dropdown {
+    width: 100% !important;
+  }
+
+}
+
+.acciones{
+  display: flex;
+  justify-content: end;
+  margin: 16px 0px;
 }

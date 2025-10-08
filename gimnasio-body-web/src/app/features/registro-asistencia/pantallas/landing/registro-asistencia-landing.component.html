@@ -3,15 +3,28 @@
     <h2>Ingrese documento de identidad</h2>
 
     <div class="accionables">
-      <input type="number" formControlName="documento" placeholder="Documento" />
+      <input
+        type="number"
+        formControlName="documento"
+        placeholder="e.g 10962345789"
+      />
 
-      <div>
-        <input type="checkbox" id="marcarSalida" formControlName="marcarSalida" />
-        <label for="marcarSalida">Marcar Salida</label>
+      <div class="marcar-salida">
+        <p-checkbox
+          formControlName="marcarSalida"
+          id="marcarSalida"
+          binary="true"
+          class="por-carrera"
+        ></p-checkbox>
+        <label class="marcar-salida" for="marcarSalida">Marcar Salida</label>
       </div>
 
-      <button class="btn--primary" type="submit" [disabled]="registroForm.invalid || loading">
-        {{ isSalida ? 'Marcar Salida' : 'Marcar Ingreso' }}
+      <button
+        class="btn--primary"
+        type="submit"
+        [disabled]="registroForm.invalid || loading"
+      >
+        {{ isSalida ? "Marcar Salida" : "Marcar Ingreso" }}
       </button>
     </div>
   </form>
@@ -25,11 +38,12 @@
   [closable]="true"
   [dismissableMask]="true"
 >
-  <p>El usuario con documento <b>{{ ultimoDocumentoIntentado }}</b> no existe.</p>
+  <p>
+    El usuario con documento <b>{{ ultimoDocumentoIntentado }}</b> no existe.
+  </p>
   <p>¿Desea registrarlo ahora?</p>
 
   <ng-template pTemplate="footer">
-    <button type="button" (click)="showNoClienteDialog = false">Cancelar</button>
     <button type="button" class="btn--primary" (click)="irACrudCliente()">
       Ir a registro de clientes
     </button>

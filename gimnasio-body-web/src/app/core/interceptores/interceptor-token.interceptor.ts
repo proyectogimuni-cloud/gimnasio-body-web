@@ -10,6 +10,12 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { ServicioAuthService } from '../../features/auth/servicios/servicio-auth.service';
 
+/**
+ * Interceptor de peticiones para firma con bearer token,
+ * utiliza el Servicio AuthService para obtener el token (si existe),
+ * Si se obtiene una respuesta 401 (No autorizado), redirige al módulo de
+ * autenticación y limpia la información de la sesión utilizando clearSession
+ */
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth: ServicioAuthService, private router: Router) {}

@@ -1,0 +1,103 @@
+.titulo {
+  text-align: center;
+  margin: 0 0 8px;
+}
+.toolbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 12px;
+  margin-bottom: 12px;
+  .acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    background: var(--primaryGray);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+}
+.graficas {
+  margin-top: 8px;
+}
+
+.graphs-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+#panel-control-container {
+  height: 100%;
+  width: 100%;
+}
+
+#filtro-fecha {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: calc(var(--baseText) * 0.7);
+}
+
+h3 {
+  color: var(--primaryDark);
+  text-align: center;
+}
+
+.grafica {
+  margin: calc(var(--baseText) * 2) 0px;
+}
+
+:host::ng-deep {
+  p-multiselect,
+  .p-multiselect {
+    width: 100% !important;
+  }
+
+  p-dropdown,
+  .p-dropdown {
+    width: 100% !important;
+  }
+
+  .p-dialog input[type="datetime-local"] {
+    width: 100% !important;
+  }
+}
+
+.filter-row{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 2fr;
+}
+
+.filtros{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 6px;
+    .filtro-desde{
+        margin-top: 6px;
+    }
+    .acciones{
+        margin-top: 8px;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        gap: 8px;
+    }
+}
+
+#graficas-mostradas-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+    .por-carrera{
+        margin-top: 6px;
+    }
+}

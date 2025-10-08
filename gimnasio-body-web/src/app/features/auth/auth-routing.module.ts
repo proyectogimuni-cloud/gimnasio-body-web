@@ -1,14 +1,15 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./componentes/login/login.component";
+import { RutasAuth } from "./enums/rutas-auth.enum";
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: '**', redirectTo: 'login', pathMatch: 'full' },
+      { path: RutasAuth.LOGIN, component: LoginComponent },
+      { path: '', redirectTo: RutasAuth.LOGIN, pathMatch: 'full' },
+      { path: '**', redirectTo: RutasAuth.LOGIN, pathMatch: 'full' },
     ],
   },
 ];
