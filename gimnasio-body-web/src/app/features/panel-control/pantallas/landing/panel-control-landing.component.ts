@@ -149,4 +149,13 @@ export class PanelControlLandingComponent implements OnInit {
       });
     }
   }
+
+  hasChartData(data: any): boolean {
+    const ds = data?.datasets;
+    if (!ds || ds.length === 0) return false;
+    return ds.some(
+      (d: any) =>
+        Array.isArray(d.data) && d.data.some((v: any) => v != null && v !== 0)
+    );
+  }
 }

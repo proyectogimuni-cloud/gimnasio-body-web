@@ -10,7 +10,6 @@
           *ngFor="let item of sidebarMenuItems"
           [routerLink]="['/main', item.ruta]"
           routerLinkActive="active"
-          rou
         >
           <span class="material-symbols-outlined"> {{ item.icono }} </span>
           <p>
@@ -19,5 +18,12 @@
         </a>
       </li>
     </ul>
+  </section>
+  <section class="seccion-inferior">
+    <button  
+    (click)="cerrarSesion()"
+    pButton
+        type="button"
+        class="p-button-secondary " >Cerrar Sesión</button>
   </section>
 </nav>
