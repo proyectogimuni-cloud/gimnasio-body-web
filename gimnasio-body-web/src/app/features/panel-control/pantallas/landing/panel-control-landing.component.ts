@@ -112,6 +112,7 @@ export class PanelControlLandingComponent implements OnInit {
 
       // para gráficas usar TODA la data filtrada
       const all = await this.panel.fetchAll(req);
+      
       this.loadingCharts = false;
       this.pieData = this.panel.buildPieByCarrera(all);
       this.donutData = this.panel.buildDonutByHour(all);

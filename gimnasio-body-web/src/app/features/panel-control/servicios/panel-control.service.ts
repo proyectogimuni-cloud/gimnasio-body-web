@@ -22,7 +22,7 @@ export class PanelControlService {
 
   /** Trae una página para la tabla/preview */
   async fetchPage(f: AsistenciaSearchReq) {
-    const body: AsistenciaSearchReq = { page: 1, limit: 20, ...f };
+    const body: AsistenciaSearchReq = { page: 1, limit: 500, ...f };
     const resp = await firstValueFrom(
       this.http.post<ApiResp<AsistenciaSearchResp>>(
         `${environment.baseUrl}/asistencia/search`, body
