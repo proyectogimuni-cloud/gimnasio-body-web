@@ -58,6 +58,7 @@
               src="/assets/imagenes/no_data.jpg"
               alt="Sin datos"
             />
+            <p>Oops Nada por  aquí!</p>
           </div>
         </ng-template>
       </ng-container>
@@ -76,6 +77,7 @@
               src="/assets/imagenes/no_data.jpg"
               alt="Sin datos"
             />
+            <p>Oops Nada por  aquí!</p>
           </div>
         </ng-template>
       </ng-container>
@@ -95,9 +97,10 @@
           <div class="no-data-img-container">
             <img
               width="300px"
-              src="/assets/imagenes/no_data.jpeg"
+              src="/assets/imagenes/no_data.jpg"
               alt="Sin datos"
             />
+            <p>Oops Nada por  aquí!</p>
           </div>
         </ng-template>
       </ng-container>
@@ -180,6 +183,7 @@
       <label>Estado</label>
       <p-dropdown
         formControlName="estado"
+        appendTo="body"
         [options]="[
           { label: 'Ambos', value: 'ambos' },
           { label: 'Abierto', value: 'abierto' },

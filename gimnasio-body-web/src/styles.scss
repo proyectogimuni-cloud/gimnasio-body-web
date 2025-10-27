@@ -123,6 +123,11 @@ input[type="number"] {
     @include btnMixing(var(--primary), #fff, var(--primary));
   }
 
+  &--centrado{
+    display: flex;
+    justify-content: center
+  }
+
   /* Secundario: borde + fondo casi transparente */
   &--secondary {
     @include btnMixing(
@@ -141,6 +146,8 @@ input[type="number"] {
     }
   }
 }
+
+
 
 
 ///  Configuración global de Inputs -----
