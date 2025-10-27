@@ -136,6 +136,7 @@ export class PanelControlLandingComponent implements OnInit {
       carrera: [],
       estado: 'ambos',
     });
+    this.aplicarFiltros();
   }
 
   async descargarCsv() {

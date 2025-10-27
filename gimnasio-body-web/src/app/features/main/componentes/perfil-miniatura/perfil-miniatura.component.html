@@ -1,10 +1,8 @@
 <section id="perfil-miniatura-seccion">
   <img
     src="/assets/imagenes/profile_img_default.jpg"
-    alt="profile img"
-    srcset=""
+    [alt]="nombre || 'profile img'"
   />
-
-  <p>Daniela Camacho</p>
-  <p>Admin</p>
+  <p>{{ nombre }}</p>
+  <p>{{ rol }}</p>
 </section>

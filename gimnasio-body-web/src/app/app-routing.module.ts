@@ -14,7 +14,7 @@ import { RutasCore } from './core/enums/rutas-core.enum';
  *  */
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'auth' },
+  { path: '', pathMatch: 'full', redirectTo: RutasCore.AUTH },
   {
     path: RutasCore.AUTH,
     loadChildren: () =>

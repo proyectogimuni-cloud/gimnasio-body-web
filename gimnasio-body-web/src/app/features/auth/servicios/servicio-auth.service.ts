@@ -6,9 +6,9 @@ import { ApiResp } from '../../../core/interfaces/api-responses.interface';
 import { environment } from '../../../../environments/environment.dev';
 import { RutasCore } from '../../../core/enums/rutas-core.enum';
 import { RutasAuth } from '../enums/rutas-auth.enum';
+import { TOKEN_KEY, USER_KEY } from '../const/auth.const';
 
-const TOKEN_KEY = 'w';
-const USER_KEY = 'h';
+
 /**
  * Servicio para la gestión de la autenticación, manejo del token,
  * y getters relacionados a la sesión.
